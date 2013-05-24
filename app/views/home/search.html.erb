@@ -1,0 +1,16 @@
+<h1>Search for users</h1>
+<%= form_tag result_path do %>
+<%= text_field_tag :str %>
+<%= submit_tag "search"%>
+<% end %>
+
+<% if @users %>
+<h4>Search Results</h4>
+	<table>
+		<% @users.each do |user|%>
+		<tr>
+			<td><%= link_to user.username, profile_path(user) %></td>
+		</tr>
+		<% end %>
+	</table>
+<% end %>

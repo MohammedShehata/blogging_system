@@ -1,0 +1,19 @@
+<h4><%= @user.username %>'s Profile</h4>
+<table>
+	<tr>
+		<td>User Name: </td>
+		<td><%= @user.username %></td>
+	</tr>
+	<tr>
+		<td>Full Name: </td>
+		<td><%= @user.firstname + " "+ @user.lastname%></td>
+	</tr>
+	<tr>
+		<td>Info: </td>
+		<td><%= @user.info %></td>
+	</tr>
+</table>
+
+<% if @user == current_user %>
+	<h1>Thanks my God</h1>
+<% end %>
