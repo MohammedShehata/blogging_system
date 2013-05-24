@@ -8,7 +8,4 @@ class HomeController < ApplicationController
     render :action => "search"
   end
   
-  def profile
-  end
-  
 end

@@ -9,6 +9,8 @@ class ProfileController < ApplicationController
   end
 
   def update
+    puts "thanks my god #{params[:user][:username]} <<<<<<<<<<<<<<<<<<<<<<<<<"
+    redirect_to :root
   end
   
 end

@@ -1,2 +1,19 @@
-<h1>Profile#edit</h1>
-<p>Find me in app/views/profile/edit.html.erb</p>
+<h1>Edit Your Profile</h1>
+
+<% if current_user.errors %>
+<ul>
+	<% current_user.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>	
+</ul>
+
+<% end %>
+<%= form_for :user, :url => update_profile_path do |f| %>
+<table>
+	<tr>
+		<td><%= f.label :username %> </td>
+		<td><%= f.text_field :username, :value => current_user.username  %></td>
+	</tr>
+</table>
+<%= f.submit "Update" %>
+<% end %>

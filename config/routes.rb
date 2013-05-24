@@ -2,12 +2,14 @@ BloggingSystem::Application.routes.draw do
 
   get "profile/show"
 
-  get "profile/edit"
 
   match "home/search" => "home#search"
   match "result" => "home#result"
   match "profile/:id" => "profile#show", :as => "profile"
+  match "edit/profile" => "profile#edit"
+  match "update/profile" => "profile#update"
   root :to => "home#search"
+  
   devise_for :users
   
   # The priority is based upon order of creation:
