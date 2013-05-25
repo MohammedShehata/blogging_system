@@ -1,0 +1,24 @@
+<h1>Blog Posts</h1>
+
+<% if @posts.length != 0%>
+<table border="1">
+	<th>Title</th>
+	<th>Content</th>
+	<th>Date of Publish</th>
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= post.title[0..20] %>
+		<%= "....." if post.title.length > 20%>
+		</td>
+		<td><%= post.content[0..20] %>
+			<%= "....." if post.content.length > 20 %>
+		</td>
+		<td><%= post.published_at.strftime("%D %H:%M") %></td>
+	</tr>
+	<%end%>
+</table>
+<% else %>
+<h4><center>There isn't any Posts yet</center></h4>
+<% end %>
+
+<%= link_to "New Post", new_post_path %>

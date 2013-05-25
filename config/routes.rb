@@ -1,8 +1,5 @@
 BloggingSystem::Application.routes.draw do
 
-  get "profile/show"
-
-
   match "home/search" => "home#search"
   match "result" => "home#result"
   match "profile/:id" => "profile#show", :as => "profile"
@@ -12,6 +9,7 @@ BloggingSystem::Application.routes.draw do
   
   devise_for :users
   
+  resources :posts
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
