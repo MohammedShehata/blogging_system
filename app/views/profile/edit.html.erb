@@ -14,6 +14,19 @@
 		<td><%= f.label :username %> </td>
 		<td><%= f.text_field :username, :value => current_user.username  %></td>
 	</tr>
+	<tr>
+		<td><%= f.label :firstname %> </td>
+		<td><%= f.text_field :firstname, :value => current_user.firstname  %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :lastname %> </td>
+		<td><%= f.text_field :lastname, :value => current_user.lastname  %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :info %> </td>
+		<td><%= f.text_field :info, :value => current_user.info  %></td>
+	</tr>
 </table>
 <%= f.submit "Update" %>
+<%= f.submit "Cancel" %>
 <% end %>
