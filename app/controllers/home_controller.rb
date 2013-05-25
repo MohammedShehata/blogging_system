@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   end
   
   def result
-    @users = User.where("username like ?", "%#{params[:str]}%")
+    @users = User.where("username like ?", "%#{params[:str]}%").page(params[:page]).per_page(5)
     render :action => "search"
   end
   
