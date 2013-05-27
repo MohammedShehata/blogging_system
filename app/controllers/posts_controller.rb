@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @posts = current_user.posts
+    @posts = current_user.posts.order("published_at DESC").page(params[:page]).per_page(5)
   end
 
   def new
@@ -10,22 +10,60 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new params[:post]
-    @post.published_at = Time.now
-    @post.published = true
-    @post.user = current_user
-    
-    if @post.save
+    if params[:commit] == "Cancel"
       redirect_to posts_path
     else
-      render :action => :new
-    end   
+      @post = Post.new params[:post]
+      @post.user = current_user
+      if params[:commit] == "Post"
+        @post.published_at = Time.now
+      end
+      
+      if @post.save
+        redirect_to posts_path
+      else
+        render :action => :new
+      end   
+    end
   end
   
   def edit
+    @post = Post.find params[:id] 
+  end
+
+  def update
+    if params[:commit] == "Cancel"
+      redirect_to posts_path
+    else
+      @post = Post.find params[:id]
+      @post.user = current_user
+      if @post.update_attributes params[:post]
+        redirect_to posts_path
+      else
+        render :action => :new
+      end   
+    end
   end
 
   def show
+    @post = Post.find params[:id]
+  end
+  
+  def publish
+    @post = Post.find params[:id]
+    
+    if @post.published_at == nil
+      @post.update_attributes :published_at => Time.now
+    end
+    
+    redirect_to @post
+  end
+  
+  def destroy
+    @post = Post.find params[:id]
+    @post.destroy
+    
+    redirect_to posts_path
   end
   
 end

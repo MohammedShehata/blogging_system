@@ -1,0 +1,28 @@
+<% if @post.errors %>
+<ul>
+	<% @post.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>	
+</ul>
+<% end %>
+
+<%= form_for @post do |f| %>
+<table>
+	<tr>
+		<td><%= f.label :title %></td>
+		<td><%= f.text_field :title %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :content %></td>
+		<td><%= f.text_area :content %></td>
+	</tr>
+</table>
+<% if @post.created_at == nil %>
+	<%= f.submit "Post" %>
+	<%= f.submit "Save" %>
+<% else %>
+	<%= f.submit "Update Post" %>
+<% end %>
+<%= f.submit "Cancel" %>
+<% end %>
+
