@@ -10,10 +10,13 @@ BloggingSystem::Application.routes.draw do
   root :to => "home#search"
   
   devise_for :users
-  
-  resources :posts
   match "publish/:id" => "posts#publish", :as => "publish"
   
+  resources :posts do
+    resources :comments
+  end
+  
+  match "posts/:post_id/comments" => "comments#create"  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

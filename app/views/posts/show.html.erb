@@ -19,4 +19,16 @@
 
 </table>
 
-<%= link_to "Back", :back%>
+<%= link_to "Back", :back%><br/>
+<br/>
+
+<%= render :partial => "comments/form" %>
+
+<% if @post.user != current_user %>
+<h3>Add Comment</h3>
+<% form_for([@post, @post.comments.build]) do |f| %>
+	<%= f.text_area :content %>
+	<%= f.submit "Comment"%>
+<% end %>
+<% end %>
+
