@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @posts = current_user.posts.order("published_at DESC").page(params[:page]).per_page(5)
+    @posts = current_user.posts.order("published_at DESC").page(params[:page]).per_page(10)
   end
 
   def new

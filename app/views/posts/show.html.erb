@@ -8,7 +8,7 @@
 	<tr>
 		<td>Published_at</td>
 		<td><%= format_date @post %></td>
-		<% if @post.published_at == nil%>
+		<% if @post.published_at == nil and @post.user == current_user %>
 		<td><%= link_to "<<<<<<<<<<< Publish", publish_path(@post) %></td>
 		<% end %>
 	</tr>

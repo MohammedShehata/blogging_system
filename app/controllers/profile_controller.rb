@@ -3,6 +3,11 @@ class ProfileController < ApplicationController
   
   def show
     @user = User.find params[:id]
+    if current_user == @user
+       @posts = @user.posts.order("created_at DESC").page(params[:page]).per_page(5)
+    else
+      @posts = @user.posts.where("published_at is not null").order("published_at DESC").page(params[:page]).per_page(5)
+    end
   end
 
   def edit
@@ -18,5 +23,11 @@ class ProfileController < ApplicationController
         render :action => :edit
     end
   end
+  
+  def destroy
+    current_user.destroy
+    redirect_to :root, :notice => "Your Account Deleted Successfully"  
+  end
+  
   
 end

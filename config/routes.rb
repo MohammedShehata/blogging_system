@@ -5,12 +5,15 @@ BloggingSystem::Application.routes.draw do
   match "profile/:id" => "profile#show", :as => "profile"
   match "edit/profile" => "profile#edit"
   match "update/profile" => "profile#update"
+  match "delete/profile" => "profile#destroy"
+  
   root :to => "home#search"
   
   devise_for :users
   
   resources :posts
   match "publish/:id" => "posts#publish", :as => "publish"
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

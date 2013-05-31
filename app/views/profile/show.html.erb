@@ -13,7 +13,11 @@
 		<td><%= @user.info %></td>
 	</tr>
 </table>
-
+<br/>
 <% if @user == current_user %>
-	<%= link_to "Edit Profile", edit_profile_path %>
+	<%= render :partial => "posts/index_form" %><br/><br/>
+	<%= link_to "Edit Profile", edit_profile_path %> | 
+	<%= link_to "Delete My Account", delete_profile_path, :confirm => "Are u sure?" %>
+<% else %>
+	<%= render :partial => "posts/user_index" %>
 <% end %>

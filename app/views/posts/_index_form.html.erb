@@ -1,0 +1,29 @@
+<% if @posts.length != 0 %>
+<table border="1">
+	<th>Title</th>
+	<th>Content</th>
+	<th>Date of Publish</th>
+	<% @posts.each do |post| %>
+	<tr>
+		<td><%= post.title[0..20] %>
+		<%= "....." if post.title.length > 20%>
+		</td>
+		<td><%= post.content[0..20] %>
+			<%= "....." if post.content.length > 20 %>
+		</td>
+<!-- format_date is ahelper in posts_helper		 -->
+		<td><%= format_date(post) %></td>
+		<td><%= link_to "Show", post %></td>
+		<td><%= link_to "Edit", edit_post_path(post) %></td>
+		<td><%= link_to "Delete", post, :method => :delete, :confirm => "Are u sure ?" %></td>
+	</tr>
+	<%end%>
+</table>
+<% else %>
+<h4><center>There isn't any Posts yet</center></h4>
+<% end %>
+
+<%= will_paginate @posts %><br/>
+<%= page_entries_info @posts %><br/>
+
+<%= link_to "New Post", new_post_path %>
