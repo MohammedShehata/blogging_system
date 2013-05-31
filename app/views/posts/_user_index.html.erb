@@ -1,9 +1,9 @@
-<% if @posts.length != 0 %>
+<% if posts_arr.length != 0 %>
 <table border="1">
 	<th>Title</th>
 	<th>Content</th>
 	<th>Date of Publish</th>
-	<% @posts.each do |post| %>
+	<% posts_arr.each do |post| %>
 	<tr>
 		<td><%= post.title[0..20] %>
 		<%= "....." if post.title.length > 20%>
@@ -21,5 +21,5 @@
 <h4><center>There isn't any Posts yet</center></h4>
 <% end %>
 
-<%= will_paginate @posts %><br/>
-<%= page_entries_info @posts %><br/>
+<%= will_paginate posts_arr %><br/>
+<%= page_entries_info posts_arr %><br/>

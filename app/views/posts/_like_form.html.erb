@@ -1,0 +1,8 @@
+<% if current_user != @post.user %>
+	<% if Like.get_like(@post, current_user) %>
+		<%= link_to "unlike", unlike_path(@post) %>
+	<% else %>
+		<%= link_to "like", like_path(@post) %>
+	<% end %>
+<% end %>
+<br/>

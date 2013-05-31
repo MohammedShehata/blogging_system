@@ -18,6 +18,10 @@
 	<%= render :partial => "posts/index_form" %><br/><br/>
 	<%= link_to "Edit Profile", edit_profile_path %> | 
 	<%= link_to "Delete My Account", delete_profile_path, :confirm => "Are u sure?" %>
+<hr />
+<h2 align="center">Posts I Like It</h2>
+<%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts}%>
 <% else %>
-	<%= render :partial => "posts/user_index" %>
+	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts} %>
 <% end %>
+

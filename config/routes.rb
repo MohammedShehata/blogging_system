@@ -18,6 +18,10 @@ BloggingSystem::Application.routes.draw do
   
   match "posts/:post_id/comments" => "comments#create"  
   
+  
+  match "like/:id" => "posts#like", :as => "like"
+  match "unlike/:id" => "posts#unlike", :as => "unlike"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

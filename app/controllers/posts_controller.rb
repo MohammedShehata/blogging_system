@@ -66,4 +66,27 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
   
+  def like
+    @post = Post.find params[:id]
+    
+    if Like.get_like(@post, current_user) == nil
+      @like = Like.new
+      @like.user = current_user
+      @like.post = @post
+      @like.save
+    end
+    
+    redirect_to @post 
+  end
+  
+  def unlike
+    @post = Post.find params[:id]
+    
+    @like = Like.get_like(@post, current_user)
+    if @like
+     @like.destroy
+    end
+    
+    redirect_to @post
+  end
 end
