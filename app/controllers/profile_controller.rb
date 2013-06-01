@@ -6,9 +6,13 @@ class ProfileController < ApplicationController
     @user = User.find params[:id]
     if current_user == @user
        @posts = @user.posts.order("created_at DESC").page(params[:page]).per_page(5)
-       # @like_posts = Post.where(:user).order("created_at DESC").page(params[:page]).per_page(5)
+       
+       # For Like Posts
        @likes = current_user.likes.order("created_at DESC").page(params[:page]).per_page(5)
        @like_posts = @likes.map(&:post)
+       
+       # For Comments and Post's Comment
+       @comments = current_user.comments.order("created_at DESC").page(params[:page]).per_page(5)
     else
       @posts = @user.posts.where("published_at is not null").order("published_at DESC").page(params[:page]).per_page(5)
     end

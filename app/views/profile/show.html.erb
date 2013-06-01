@@ -22,6 +22,9 @@
 <h2 align="center">Posts I Like It</h2>
 <%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts, :paginator => @likes}%>
 
+<hr />
+<h2 align="center">Posts I Comment It</h2>
+<%= render :partial => "comments/profile_form" %>
 <% else %>
 	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts, :paginator => @posts} %>
 <% end %>
