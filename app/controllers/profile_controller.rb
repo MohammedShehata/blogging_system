@@ -1,12 +1,14 @@
 class ProfileController < ApplicationController
   before_filter :authenticate_user!
+  require 'will_paginate/array'
   
   def show
     @user = User.find params[:id]
     if current_user == @user
        @posts = @user.posts.order("created_at DESC").page(params[:page]).per_page(5)
        # @like_posts = Post.where(:user).order("created_at DESC").page(params[:page]).per_page(5)
-       @like_posts = current_user.likes.order("created_at DESC").page(params[:page]).per_page(2).map(&:post)
+       @likes = current_user.likes.order("created_at DESC").page(params[:page]).per_page(5)
+       @like_posts = @likes.map(&:post)
     else
       @posts = @user.posts.where("published_at is not null").order("published_at DESC").page(params[:page]).per_page(5)
     end

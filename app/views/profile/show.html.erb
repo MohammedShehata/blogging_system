@@ -20,8 +20,9 @@
 	<%= link_to "Delete My Account", delete_profile_path, :confirm => "Are u sure?" %>
 <hr />
 <h2 align="center">Posts I Like It</h2>
-<%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts}%>
+<%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts, :paginator => @likes}%>
+
 <% else %>
-	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts} %>
+	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts, :paginator => @posts} %>
 <% end %>
 
