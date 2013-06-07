@@ -1,8 +1,11 @@
+<br/>
 <% if current_user != @post.user %>
 	<% if Like.get_like(@post, current_user) %>
 		<%= link_to "unlike", unlike_path(@post) %>
+<!-- 		<button class="btn btn-mini btn-info" onclick=""><i class=" icon-thumbs-down"></i> unlike</button> -->
 	<% else %>
 		<%= link_to "like", like_path(@post) %>
 	<% end %>
 <% end %>
+<br/>
 <br/>

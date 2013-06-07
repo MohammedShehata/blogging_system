@@ -13,16 +13,16 @@
 		<td><%= f.text_field :title %></td>
 	</tr>
 	<tr>
-		<td><%= f.label :content %></td>
+		<td style="vertical-align: top"><%= f.label :content %></td>
 		<td><%= f.text_area :content %></td>
 	</tr>
 </table>
 <% if @post.created_at == nil %>
-	<%= f.submit "Post" %>
-	<%= f.submit "Save" %>
+	<%= f.submit "Post", :class => "btn btn-primary" %>
+	<%= f.submit "Save", :class => "btn btn-primary" %>
 <% else %>
-	<%= f.submit "Update Post" %>
+	<%= f.submit "Update Post" , :class => "btn btn-primary"%>
 <% end %>
-<%= f.submit "Cancel" %>
+<%= f.submit "Cancel", :class => "btn btn-danger"%>
 <% end %>
 

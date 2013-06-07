@@ -1,12 +1,12 @@
-<h1>Search for users</h1>
+<br/>
 <%= form_tag result_path do %>
 <%= text_field_tag :str %>
-<%= submit_tag "search"%>
+<%= submit_tag "search", :class => "btn btn-primary"%>
 <% end %>
 
 <% if @users %>
 <h4>Search Results</h4>
-	<table>
+	<table class="table table-hover">
 		<% @users.each do |user|%>
 		<tr>
 			<td><%= link_to user.username, profile_path(user) %></td>

@@ -1,5 +1,5 @@
 <% if @posts.length != 0 %>
-<table border="1">
+<table class="table table-hover">
 	<th>Title</th>
 	<th>Content</th>
 	<th>Date of Publish</th>
@@ -24,6 +24,6 @@
 <% end %>
 
 <%= will_paginate @posts %><br/>
-<%= page_entries_info @posts %><br/>
+<%= page_entries_info @posts %><br/><br/>
 
 <%= link_to "New Post", new_post_path %>

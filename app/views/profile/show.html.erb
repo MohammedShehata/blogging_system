@@ -1,15 +1,15 @@
-<h4><%= @user.username %>'s Profile</h4>
+<h4 style="text-align: center"><%= @user.username %>'s profile</h4>
 <table>
 	<tr>
-		<td>User Name: </td>
+		<td style="font-weight: bold">User Name: </td>
 		<td><%= @user.username %></td>
 	</tr>
 	<tr>
-		<td>Full Name: </td>
+		<td style="font-weight: bold">Full Name: </td>
 		<td><%= @user.firstname + " "+ @user.lastname%></td>
 	</tr>
 	<tr>
-		<td>Info: </td>
+		<td style="font-weight: bold">Info: </td>
 		<td><%= @user.info %></td>
 	</tr>
 </table>
@@ -19,11 +19,11 @@
 	<%= link_to "Edit Profile", edit_profile_path %> | 
 	<%= link_to "Delete My Account", delete_profile_path, :confirm => "Are u sure?" %>
 <hr />
-<h2 align="center">Posts I Like It</h2>
+<h4 align="center">Posts I Like It</h4>
 <%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts, :paginator => @likes}%>
 
 <hr />
-<h2 align="center">Posts I Comment It</h2>
+<h4 align="center">Posts I Commented It</h4>
 <%= render :partial => "comments/profile_form" %>
 <% else %>
 	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts, :paginator => @posts} %>
