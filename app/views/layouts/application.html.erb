@@ -7,21 +7,34 @@
   <%= csrf_meta_tag %>
 </head>
 <body style="margin: 1%">
-	<div>
+	<ul class="nav nav-pills">
 	<% if user_signed_in? %>
-	<%= link_to "Sign out", destroy_user_session_path, :method => "delete" %> |
-	<%= link_to "Profile", profile_path(current_user) %> |
-	<%= link_to "Blog", posts_path %>
+	<li><%= link_to "Sign out", destroy_user_session_path, :method => "delete" %></li>
+	<li><%= link_to "Profile", profile_path(current_user) %></li> 
+	<li><%= link_to "Blog", posts_path %></li>
 	<% else %>
-	<%= link_to "Sign in", new_user_session_path %> |
-	<%= link_to "Sign up", new_user_registration_path %>
+	<li><%= link_to "Sign in", new_user_session_path %></li> 
+	<li><%= link_to "Sign up", new_user_registration_path %></li>
 	<% end %>
-	| <%= link_to "Home", root_path %>
+	 <li><%= link_to "Home", root_path %></li>
+	</ul>
+	
+	<div class="alert alert-success">
+	<button class="close" data-dismiss="alert" type="button">&times;</button>
+    <strong>
+      Well done!
+    </strong>
+       You successfully read this important alert message.
+            
+    </div>
+	
+<% if notice or alert %>
+	<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<%= notice %>
+	<%= alert %>
 	</div>
-<div>
-<%= notice %>
-<%= alert %>
-</div>
+<% end %>	
 
 <%= yield %>
 
