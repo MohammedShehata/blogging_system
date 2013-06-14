@@ -1,7 +1,10 @@
 <table>
 <% @post.comments.each do |comment|%>
 	<tr>
-		<td><b><%= comment.user.username %> says: </b></td>
+		<td>
+			<%= image_tag profile_pic(comment.user), :class=>"img-rounded" %>
+			<span style="vertical-align: top"><%= link_to comment.user.username %> <b>said:</b></span>
+		</td>
 		<td><%= comment.content %></td>
 	<% if comment.user == current_user || @post.user == current_user %>
 		<td>

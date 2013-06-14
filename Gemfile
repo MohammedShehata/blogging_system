@@ -9,6 +9,13 @@ gem 'mysql'
 gem 'devise'
 gem 'will_paginate', '~> 3.0.0'
 
+gem 'carrierwave'
+gem 'mini_magick'
+
+# use it by rails g jquery:install 
+# to remove all prototypes and make twitter bootstrap work correctly
+gem "jquery-rails"
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

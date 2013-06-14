@@ -1,4 +1,8 @@
 <h4 style="text-align: center"><%= @user.username %>'s profile</h4>
+
+<div style="">
+	<%= image_tag profile_pic(@user), :class => "img-rounded"%>
+</div>
 <table>
 	<tr>
 		<td style="font-weight: bold">User Name: </td>
@@ -10,7 +14,7 @@
 	</tr>
 	<tr>
 		<td style="font-weight: bold">Info: </td>
-		<td><%= @user.info %></td>
+		<td><p><%= @user.info %></p></td>
 	</tr>
 </table>
 <br/>

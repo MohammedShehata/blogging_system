@@ -8,8 +8,9 @@
 		<td><%= post.title[0..20] %>
 		<%= "....." if post.title.length > 20%>
 		</td>
-		<td><%= post.content[0..20] %>
-			<%= "....." if post.content.length > 20 %>
+		<td>
+			<p><%= post.content[0..20] %>
+			<%= "....." if post.content.length > 20 %></p>
 		</td>
 <!-- format_date is ahelper in posts_helper		 -->
 		<td><%= format_date(post) %></td>

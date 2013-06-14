@@ -1,23 +1,14 @@
-<br/>
-
-<table>
-	<tr>
-		<td>Title</td>
-		<td><%= @post.title %></td>
-	</tr>
-	<tr>
-		<td>Published_at</td>
-		<td><%= format_date @post %></td>
-		<% if @post.published_at == nil and @post.user == current_user %>
-		<td><%= link_to "<<<<<<<<<<< Publish", publish_path(@post) %></td>
-		<% end %>
-	</tr>
-	<tr>
-		<td>Content</td>
-		<td><%= @post.content %></td>
-	</tr>
-
-</table>
+<p style="color: #FF0000; font-weight: bolder"><%= @post.title %>
+	<span style="color: blue"> @<%= format_date @post %></span>
+</p>
+<p><%= @post.content %></p>
+<% if @post.published_at == nil and @post.user == current_user %>
+<div>
+	<i class="icon-forward"></i>
+	<i class="icon-forward"></i>
+	<%= link_to "Publish It", publish_path(@post), :class =>"btn btn-primary" %>
+</div>
+<% end %>
 
 <%= render :partial => "like_form" %>
 <%= link_to "Back", posts_path %><br/>
