@@ -5,7 +5,7 @@
 			<%= image_tag profile_pic(comment.user), :class=>"img-rounded" %>
 			<span style="vertical-align: top"><%= link_to comment.user.username %> <b>said:</b></span>
 		</td>
-		<td><%= comment.content %></td>
+		<td><p><%= comment.content %></p></td>
 	<% if comment.user == current_user || @post.user == current_user %>
 		<td>
 			<%= link_to "Delete", [@post, comment], :method => :delete, :confirm => "Are u sure?" %>

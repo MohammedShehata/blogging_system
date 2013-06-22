@@ -19,8 +19,8 @@
 <% if @post.user != current_user %>
 <h3>Add Comment</h3>
 <% form_for([@post, @post.comments.build]) do |f| %>
-	<%= f.text_area :content %>
-	<%= f.submit "Comment"%>
+	<div><%= f.text_area :content, :cols => "150",:rows => "5" %></div>
+	<%= f.submit "Comment", :class => "btn btn-primary"%>
 <% end %>
 <% end %>
 

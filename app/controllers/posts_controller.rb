@@ -76,7 +76,7 @@ class PostsController < ApplicationController
       @like.save
     end
     
-    redirect_to @post 
+    # redirect_to @post 
   end
   
   def unlike
