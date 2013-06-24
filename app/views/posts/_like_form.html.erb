@@ -1,27 +1,24 @@
 <br/>
 <% if current_user != @post.user %>
-<div id="like_group">
-	<% if Like.get_like(@post, current_user) %>
-		<%= form_tag unlike_path(@post) do %>
-			<button type="submit" class="btn btn-mini btn-info">
-				<i class=" icon-thumbs-down"></i>
-				Unlike
-			</button>
-		<% end %>
-	<% else %>
-		<%= form_tag like_path(@post), :remote => true do %>
-			<button type="submit" class="btn btn-mini btn-info">
-				<i class=" icon-thumbs-up"></i>
-				Like
-			</button>
-		<% end %>
+<% if Like.get_like(@post, current_user) %>
+	<%= form_tag unlike_path(@post), :id => "like_form", :remote => true do %>
+		<button type="submit" class="btn btn-mini btn-info">
+			<i id ="like_icon" class=" icon-thumbs-down"></i>
+			<span id="like_txt">Unlike</span>
+		</button>
 	<% end %>
-</div>
-<div id="temp" style="display: none"> tito </div>
+<% else %>
+	<%= form_tag like_path(@post), :id => "like_form", :remote => true do %>
+		<button type="submit" class="btn btn-mini btn-info">
+			<i id="like_icon" class=" icon-thumbs-up"></i>
+			<span id="like_txt">Like</span>
+		</button>
+<% end %>
+<% end %>
 <div id="like_by">
 	<span style="font-weight: bolder">Liked by:</span>
 	<% @post.likes.map(&:user).each do |user| %>
-		<%= link_to user.username, profile_path(user) %> |
+		<%= link_to user.username, profile_path(user) %><span> | </span>
 	<% end %>
 </div>
 <% end %>

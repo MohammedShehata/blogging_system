@@ -87,6 +87,6 @@ class PostsController < ApplicationController
      @like.destroy
     end
     
-    redirect_to @post
+    # redirect_to @post
   end
 end
