@@ -4,7 +4,7 @@
 	<th>Content</th>
 	<th>Date of Publish</th>
 	<% @posts.each do |post| %>
-	<tr>
+	<tr id= "<%=post.id%>">
 		<td><%= post.title[0..20] %>
 		<%= "....." if post.title.length > 20%>
 		</td>
@@ -16,7 +16,7 @@
 		<td><%= format_date(post) %></td>
 		<td><%= link_to "Show", post %></td>
 		<td><%= link_to "Edit", edit_post_path(post) %></td>
-		<td><%= link_to "Delete", post, :method => :delete, :confirm => "Are u sure ?" %></td>
+		<td><%= link_to "Delete", post, :method => :delete, :confirm => "Are u sure ?", :remote => true %></td>
 	</tr>
 	<%end%>
 </table>
