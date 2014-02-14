@@ -5,12 +5,14 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true
   validates :firstname, :presence => true
   validates :lastname, :presence => true 
+  validates :location, :presence => true
   
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :firstname, :lastname, :info, :image, :remote_image_url
+  # very important here Note That <<< location_attributes >>> Not Location see the source of new.html
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :firstname, :lastname, :info, :image, :remote_image_url, :location_attributes
   
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
@@ -19,5 +21,5 @@ class User < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   
   belongs_to :location, :dependent => :destroy
-  # accepts_nested_attributes_for :location, :reject_if => proc{|attrs| attrs.all? { |k, v| v.blank? } } 
+  accepts_nested_attributes_for :location, :allow_destroy => :true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 end

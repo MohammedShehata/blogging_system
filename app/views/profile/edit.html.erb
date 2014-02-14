@@ -9,6 +9,8 @@
 		<% end %>
 	</ul>
 	<% end %>
+	<%= notice %>
+	
 	<%= form_for :user, :url => update_profile_path do |f| %>
 	<table>
 		<tr>
@@ -27,17 +29,17 @@
 			<td><%= f.label :info %> </td>
 			<td><%= f.text_field :info, :value => current_user.info  %></td>
 		</tr>
-	</table>
 	<%= f.fields_for :location do |location_form| %>
-		<%= location_form.hidden_field :lat, :value => current_user.location.lat  %>
-		<%= location_form.hidden_field :lng, :value => current_user.location.lng %>
+	<%= location_form.hidden_field :lat, :value => current_user.location.lat  %>
+	<%= location_form.hidden_field :lng, :value => current_user.location.lng %>
 	<% end %>
 	<%= f.submit "Update", :class=>"btn btn-primary" %>
 	<%= f.submit "Cancel", :class=>"btn btn-danger" %>
 	<% end %>
-	
-	 <div class="span7" style="height: 100%; position: absolute; top: 10%; left: 40%" >
-	 	<p class="text-info">Location</p>
-	 	<div id="map-canvas"; style="height: 60%"></div>
-	 </div>
+	<div class="span7" style="height: 100%; position: absolute; top: 10%; left: 40%" >
+		<p class="text-info">
+			Location (right click to edit your location)
+		</p>
+		<div id="map-canvas"; style="height: 60%"></div>
+	</div>
 </body>

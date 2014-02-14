@@ -1,25 +1,59 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "Update" %></div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
+<body onload="edit()">
+	<h4>Edit Your Profile</h4>
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+	<%= devise_error_messages! %>
+	<table>
+		<tr>
+			<td><%= f.label :email %> </td>
+			<td><%= f.email_field :email %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :username %> </td>
+			<td><%= f.text_field :username%></td>
+		</tr>
+		<tr>
+			<td><%= f.label :firstname %> </td>
+			<td><%= f.text_field :firstname %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :lastname %> </td>
+			<td><%= f.text_field :lastname %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :info %> </td>
+			<td><%= f.text_field :info %></td>
+		</tr>
+	</table>
+	<div>
+		<%= f.label :password %> <i class="text-error" >(leave blank if you don't want to change it)</i>
+		<br />
+		<%= f.password_field :password %>
+	</div>
+	<div>
+		<%= f.label :password_confirmation %>
+		<%= f.password_field :password_confirmation %>
+	</div>
+	<div>
+		<%= f.label :current_password %> <i class="text-error">(we need your current password to confirm your changes)</i>
+		<br/>
+		<%= f.password_field :current_password %>
+	</div>
+	<%= f.fields_for :location do |location_form| %>
+	<%= location_form.hidden_field :lat, :value => current_user.location.lat  %>
+	<%= location_form.hidden_field :lng, :value => current_user.location.lng %>
+	<% end %>
+	<div>
+		<%= f.submit "Update", :class=>"btn btn-primary" %>
+	</div>
+	<% end %> <h3>Cancel my account</h3>
+	<p>
+		Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.
+	</p>
+	<%= link_to "Back", :back %>
+	<div class="span7" style="height: 100%; position: absolute; top: 10%; left: 40%" >
+		<p class="text-info">
+			Location (right click to edit your location)
+		</p>
+		<div id="map-canvas"; style="height: 60%"></div>
+	</div>
+</body>

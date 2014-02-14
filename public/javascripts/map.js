@@ -2,7 +2,7 @@ var myMap;
 var canEdit = false;
 var userLocation = null;
 
-function Map() {
+function Map(lat, lng) {
 	var mapOptions = {
 		center : new google.maps.LatLng(31.20044877356022, 29.915771484375),
 		zoom : 13,
@@ -13,9 +13,7 @@ function Map() {
 		// disableDoubleClickZoom : true
 	};
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-	var lat = $("#user_location_lat").val();
-	var lng = $("#user_location_lng").val();
+	
 	if(lat != null && lng != null) {
 		addMarker(lat, lng);
 	}
@@ -27,8 +25,10 @@ function Map() {
 			addMarker(event.latLng.lat(), event.latLng.lng());
 			
 			// update the location
-			$("#user_location_lat").val(userLocation.getPosition().lat());
-			$("#user_location_lng").val(userLocation.getPosition().lng());
+			// $("#user_location_lat").val(userLocation.getPosition().lat());
+			// $("#user_location_lng").val(userLocation.getPosition().lng());
+			$("#user_location_attributes_lat").val(userLocation.getPosition().lat());
+			$("#user_location_attributes_lng").val(userLocation.getPosition().lng());
 		}
 
 	});
@@ -39,6 +39,7 @@ function Map() {
 		setTimeout(function() {
 			userLocation.setAnimation(null);
 		}, 2000);
+		map.panTo(userLocation.getPosition());
 	}
 }
 
@@ -54,15 +55,17 @@ function Marker(lat, lng, map) {
 }
 
 function show() {
-	myMap = new Map();
+	myMap = new Map(currentUserLoc.location.lat, currentUserLoc.location.lng);
 }
 
 function edit() {
-	myMap = new Map();
+	var lat = $("#user_location_attributes_lat").val();
+	var lng = $("#user_location_attributes_lng").val();
+	myMap = new Map(lat, lng);
 	canEdit = true;
 }
 
 function create() {
-	myMap = new Map();
+	myMap = new Map(null, null);
 	canEdit = true;
 }

@@ -1,35 +1,50 @@
-<h4 style="text-align: center"><%= @user.username %>'s profile</h4>
-
-<div style="">
-	<%= image_tag profile_pic(@user), :class => "img-rounded"%>
-</div>
-<table>
-	<tr>
-		<td style="font-weight: bold">User Name: </td>
-		<td><%= @user.username %></td>
-	</tr>
-	<tr>
-		<td style="font-weight: bold">Full Name: </td>
-		<td><%= @user.firstname + " "+ @user.lastname%></td>
-	</tr>
-	<tr>
-		<td style="font-weight: bold">Info: </td>
-		<td><p><%= @user.info %></p></td>
-	</tr>
-</table>
-<br/>
-<% if @user == current_user %>
-	<%= render :partial => "posts/index_form" %><br/><br/>
-	<%= link_to "Edit Profile", edit_profile_path %> | 
+<body onload="show()">
+	<h4 style="text-align: left"><%= @user.username %>'s profile</h4>
+	<div style="">
+		<%= image_tag profile_pic(@user), :class => "img-rounded"%>
+	</div>
+	<table>
+		<tr>
+			<td style="font-weight: bold">User Name: </td>
+			<td><%= @user.username %></td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold">Full Name: </td>
+			<td><%= @user.firstname + " "+ @user.lastname%></td>
+		</tr>
+		<tr>
+			<td style="font-weight: bold">Info: </td>
+			<td>
+			<p>
+				<%= @user.info %>
+			</p></td>
+		</tr>
+	</table>
+	<br/>
+	<!-- 	 For The user location map    -->
+	<%= javascript_tag do %>
+		window.currentUserLoc = <%= raw current_user.location.to_json(:only => [:lat, :lng] ) %>;
+	<% end %>
+	<div class="span7" style="height: 50%; position: absolute; top: 5%; left: 40%" >
+		<p class="text-info">
+			<%= current_user.username%>'s Location
+		</p>
+		<div id="map-canvas"; style="height: 70%"></div>
+	</div>
+	
+	<% if @user == current_user %> 
+	<%= render :partial => "posts/index_form" %>
+	<br/>
+	<br/>
+	<%= link_to "Edit Profile", edit_user_registration_path %> |
 	<%= link_to "Delete My Account", delete_profile_path, :confirm => "Are u sure?" %>
-<hr />
-<h4 align="center">Posts I Like It</h4>
-<%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts, :paginator => @likes}%>
-
-<hr />
-<h4 align="center">Posts I Commented It</h4>
-<%= render :partial => "comments/profile_form" %>
-<% else %>
+	<hr />
+	<h4 align="center">Posts I Like It</h4>
+	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @like_posts, :paginator => @likes}%>
+	<hr />
+	<h4 align="center">Posts I Commented It</h4>
+	<%= render :partial => "comments/profile_form" %>
+	<% else %>
 	<%= render :partial => "posts/user_index", :locals => {:posts_arr => @posts, :paginator => @posts} %>
-<% end %>
-
+	<% end %>
+</body>

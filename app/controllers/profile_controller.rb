@@ -25,7 +25,8 @@ class ProfileController < ApplicationController
     if params[:commit] == "Cancel"
       redirect_to profile_path current_user     
     elsif current_user.update_attributes(:username => params[:user][:username], :firstname => params[:user][:firstname],
-          :lastname => params[:user][:lastname], :info => params[:user][:info]) and current_user.location.update_attributes(params[:user][:location])
+          :lastname => params[:user][:lastname], :info => params[:user][:info]) and 
+         current_user.location.update_attributes(params[:user][:location])
           
       redirect_to profile_path(current_user), :notice => "profile updated succefully!"     
     else
