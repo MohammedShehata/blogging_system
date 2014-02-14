@@ -1,32 +1,43 @@
-<h4>Edit Your Profile</h4>
-
-<% if current_user.errors %>
-<ul>
-	<% current_user.errors.full_messages.each do |msg| %>
-	<li><%= msg %></li>
-	<% end %>	
-</ul>
-
-<% end %>
-<%= form_for :user, :url => update_profile_path do |f| %>
-<table>
-	<tr>
-		<td><%= f.label :username %> </td>
-		<td><%= f.text_field :username, :value => current_user.username  %></td>
-	</tr>
-	<tr>
-		<td><%= f.label :firstname %> </td>
-		<td><%= f.text_field :firstname, :value => current_user.firstname  %></td>
-	</tr>
-	<tr>
-		<td><%= f.label :lastname %> </td>
-		<td><%= f.text_field :lastname, :value => current_user.lastname  %></td>
-	</tr>
-	<tr>
-		<td><%= f.label :info %> </td>
-		<td><%= f.text_field :info, :value => current_user.info  %></td>
-	</tr>
-</table>
-<%= f.submit "Update", :class=>"btn btn-primary" %>
-<%= f.submit "Cancel", :class=>"btn btn-danger" %>
-<% end %>
+<body onload="edit()">
+	<h4>Edit Your Profile</h4>
+	<% if current_user.errors %>
+	<ul>
+		<% current_user.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+	<% end %>
+	<%= form_for :user, :url => update_profile_path do |f| %>
+	<table>
+		<tr>
+			<td><%= f.label :username %> </td>
+			<td><%= f.text_field :username, :value => current_user.username  %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :firstname %> </td>
+			<td><%= f.text_field :firstname, :value => current_user.firstname  %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :lastname %> </td>
+			<td><%= f.text_field :lastname, :value => current_user.lastname  %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :info %> </td>
+			<td><%= f.text_field :info, :value => current_user.info  %></td>
+		</tr>
+	</table>
+	<%= f.fields_for :location do |location_form| %>
+		<%= location_form.hidden_field :lat, :value => current_user.location.lat  %>
+		<%= location_form.hidden_field :lng, :value => current_user.location.lng %>
+	<% end %>
+	<%= f.submit "Update", :class=>"btn btn-primary" %>
+	<%= f.submit "Cancel", :class=>"btn btn-danger" %>
+	<% end %>
+	
+	 <div class="span7" style="height: 100%; position: absolute; top: 10%; left: 40%" >
+	 	<p class="text-info">Location</p>
+	 	<div id="map-canvas"; style="height: 60%"></div>
+	 </div>
+</body>

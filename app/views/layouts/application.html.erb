@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>BloggingSystem</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :all %>
-  <%= csrf_meta_tag %>
-</head>
-<body style="margin: 1%">
-	<ul class="nav nav-pills">
-	<% if user_signed_in? %>
-	<li><%= link_to "Sign out", destroy_user_session_path, :method => "delete" %></li>
-	<li><%= link_to "Profile", profile_path(current_user) %></li> 
-	<li><%= link_to "Blog", posts_path %></li>
-	<% else %>
-	<li><%= link_to "Sign in", new_user_session_path %></li> 
-	<li><%= link_to "Sign up", new_user_registration_path %></li>
-	<% end %>
-	 <li><%= link_to "Home", root_path %></li>
-	</ul>
-	
-<% if notice or alert %>
-	<div class="alert alert-success">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<%= notice %>
-	<%= alert %>
-	</div>
-<% end %>	
+	<head>
+		<title>BloggingSystem</title>
+		<%= stylesheet_link_tag :all %>
+		<%= javascript_include_tag :all%>
+		<%= csrf_meta_tag %>
+		<style type="text/css">
+			html {
+				height: 100%
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0
+			}
+		</style>
+		<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5SDBOHYHgFj6_WgE5JoNrKovROLVB3x8&sensor=true&language=ar">
+		</script>
+	</head>
+	<body style="margin: 1%">
+		<ul class="nav nav-pills">
+			<% if user_signed_in? %>
+			<li>
+				<%= link_to "Sign out", destroy_user_session_path, :method => "delete" %>
+			</li>
+			<li>
+				<%= link_to "Profile", profile_path(current_user) %>
+			</li>
+			<li>
+				<%= link_to "Blog", posts_path %>
+			</li>
+			<% else %>
+			<li>
+				<%= link_to "Sign in", new_user_session_path %>
+			</li>
+			<li>
+				<%= link_to "Sign up", new_user_registration_path %>
+			</li>
+			<% end %>
+			<li>
+				<%= link_to "Home", root_path %>
+			</li>
+		</ul>
+		<% if notice or alert %>
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">
+				&times;
+			</button>
+			<%= notice %>
+			<%= alert %>
+		</div>
+		<% end %>
 
-<%= yield %>
-
-</body>
+		<%= yield %>
+	</body>
 </html>

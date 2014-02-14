@@ -16,5 +16,8 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :likes
   
-  mount_uploader :image, ImageUploader 
+  mount_uploader :image, ImageUploader
+  
+  belongs_to :location, :dependent => :destroy
+  # accepts_nested_attributes_for :location, :reject_if => proc{|attrs| attrs.all? { |k, v| v.blank? } } 
 end

@@ -4,18 +4,15 @@
 <%= submit_tag "search", :class => "btn btn-primary"%>
 <% end %>
 
-<% if @users %>
-<h4>Search Results</h4>
-	<table class="table table-hover">
-		<% @users.each do |user|%>
-		<tr>
-			<td>
-				<%= image_tag profile_pic(user), :class => "img-rounded"%>
-				<span><%= link_to user.username, profile_path(user) %></span>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-	<%= will_paginate @users, :style => 'color:blue' %><br/>
-	<%= page_entries_info @users %>
+<% if @users %> <h4>Search Results</h4>
+<table class="table table-hover">
+	<% @users.each do |user|%>
+	<tr>
+		<td> <%= image_tag profile_pic(user), :class => "img-rounded"%> <span><%= link_to user.username, profile_path(user) %></span></td>
+	</tr>
+	<% end %>
+</table>
+<%= will_paginate @users, :style => 'color:blue' %>
+<br/>
+<%= page_entries_info @users %>
 <% end %>
