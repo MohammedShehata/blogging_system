@@ -22,6 +22,9 @@ BloggingSystem::Application.routes.draw do
   match "like/:id" => "posts#like", :as => "like"
   match "unlike/:id" => "posts#unlike", :as => "unlike"
   
+  # for the autocomplete
+  match "usernames" => "profile#usernames"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

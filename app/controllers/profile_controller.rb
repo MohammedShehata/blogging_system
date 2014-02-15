@@ -40,4 +40,11 @@ class ProfileController < ApplicationController
   end
   
   
+  def usernames
+    @names = User.where("username like ?", "%#{params[:term]}%").limit(7).map(&:username)
+    respond_to do |format|
+      format.json { render :json => @names }
+    end 
+  end
+  
 end
