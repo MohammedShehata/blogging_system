@@ -10,6 +10,7 @@ BloggingSystem::Application.routes.draw do
   root :to => "home#search"
   
   devise_for :users
+  # match "users/sign_out" => "sessions/destroy", :as => "destroy_user_session_path", :method => :delete
   match "publish/:id" => "posts#publish", :as => "publish"
   
   resources :posts do

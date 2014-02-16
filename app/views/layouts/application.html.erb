@@ -4,7 +4,9 @@
 		<title>BloggingSystem</title>
 		<%= stylesheet_link_tag :all %>
 		<%= stylesheet_link_tag "ui-darkness/jquery-ui-1.10.4.custom.css" %>
-		<%= javascript_include_tag :all %>
+<!-- Note that use defaults will put the 2 files application.js + jquery_ujs.js(without this file sign_out
+					in devise doesn't work)		 -->
+		<%= javascript_include_tag :defaults, "bootstrap.min.js", "jquery_ujs.js", "jquery.js", "jquery-1.10.2.js", "jquery-ui-1.10.4.custom.min.js", "map.js" %>
 		<%= csrf_meta_tag %>
 		
 		<style type="text/css" >
@@ -25,7 +27,7 @@
 		<ul class="nav nav-pills">
 			<% if user_signed_in? %>
 			<li>
-				<%= link_to "Sign out", destroy_user_session_path, :method => "delete" %>
+				<%= link_to "Sign out", destroy_user_session_path, :method => "delete", :confirm => "Confirm for Sign Out" %>
 			</li>
 			<li>
 				<%= link_to "Profile", profile_path(current_user) %>
