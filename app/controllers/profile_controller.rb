@@ -42,6 +42,7 @@ class ProfileController < ApplicationController
   
   def usernames
     @names = User.where("username like ?", "%#{params[:term]}%").limit(7).map(&:username)
+    @names.map{|name| name.force_encoding('UTF-8')}
     respond_to do |format|
       format.json { render :json => @names }
     end 

@@ -23,11 +23,11 @@
 	<br/>
 	<!-- 	 For The user location map    -->
 	<%= javascript_tag do %>
-		window.currentUserLoc = <%= raw current_user.location.to_json(:only => [:lat, :lng] ) %>;
+		window.currentUserLoc = <%= raw @user.location.to_json(:only => [:lat, :lng] ) %>;
 	<% end %>
 	<div class="span7" style="height: 50%; position: absolute; top: 5%; left: 40%" >
 		<p class="text-info">
-			<%= current_user.username%>'s Location
+			<%= @user.username%>'s Location
 		</p>
 		<div id="map-canvas"; style="height: 70%"></div>
 	</div>
