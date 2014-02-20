@@ -11,3 +11,29 @@ $(function() {
 		}
 	});
 });
+$(function() {
+	$("#dialog").dialog({
+		autoOpen : false,
+		show : {
+			effect : "blind",
+			duration : 1000
+		},
+		hide : {
+			effect : "explode",
+			duration : 1000
+		},
+		title : "This Post Liked By",
+		buttons : [{
+			text : "Close",
+			click : function() {
+				$(this).dialog("close");
+			}
+		}],
+		maxHeight: 350,
+		modal : true,
+		backgroundColor: "red" 
+	});
+	$("#opener").click(function() {
+		$("#dialog").dialog("open");
+	});
+});
