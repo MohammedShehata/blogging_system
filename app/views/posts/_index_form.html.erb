@@ -5,11 +5,11 @@
 	<th>Date of Publish</th>
 	<% @posts.each do |post| %>
 	<tr id= "<%=post.id%>">
-		<td><%= post.title[0..20] %>
+		<td><%= format_utf_8(post.title) %>
 		<%= "....." if post.title.length > 20%>
 		</td>
 		<td>
-			<p><%= post.content[0..20] %>
+			<p><%= format_utf_8(post.content) %>
 			<%= "....." if post.content.length > 20 %></p>
 		</td>
 <!-- format_date is ahelper in posts_helper		 -->

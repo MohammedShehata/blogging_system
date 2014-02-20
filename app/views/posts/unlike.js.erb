@@ -2,6 +2,4 @@ $("#like_form").attr("action", "<%= like_path(@post)%>");
 $("#like_txt").text("Like");
 $("#like_icon").addClass("icon-thumbs-up").removeClass("icon-thumbs-down");
 
-<!--  To remove last "|"  and last user name  -->
-$("#like_by span:last-child").remove();       
-$("#like_by a:last-child").remove();
+$("#u-<%=current_user.id%>").remove();

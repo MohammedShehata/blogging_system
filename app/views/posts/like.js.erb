@@ -2,9 +2,11 @@ $("#like_form").attr("action", "<%= unlike_path(@post)%>");
 $("#like_txt").text("Unlike");
 $("#like_icon").addClass("icon-thumbs-down").removeClass("icon-thumbs-up");
 
-<!-- $("#like_by").add("<%= link_to current_user.username, profile_path(current_user) %>"); -->
+$("<span/>", {
+	id: "u-<%= current_user.id %>"
+}).appendTo("#like_by");
 $("<a/>",{
 	href: "<%=profile_path(current_user)%>",
 	text: "<%= current_user.username %>"
-}).appendTo("#like_by");
-$("#like_by").append("<span> | </span>");
+}).appendTo("#u-<%= current_user.id %>");
+
