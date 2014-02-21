@@ -3,7 +3,7 @@
 	<tr>
 		<td>
 			<%= image_tag profile_pic(comment.user), :class=>"img-rounded" %>
-			<span style="vertical-align: top"><%= link_to comment.user.username %> <b>said:</b></span>
+			<span style="vertical-align: top"><%= link_to comment.user.username, profile_path(comment.user) %> <b>said:</b></span>
 		</td>
 		<td><p><%= comment.content %></p></td>
 	<% if comment.user == current_user || @post.user == current_user %>
