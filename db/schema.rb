@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213205750) do
+ActiveRecord::Schema.define(:version => 20140228160022) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20140213205750) do
   create_table "locations", :force => true do |t|
     t.string   "lat"
     t.string   "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "content"
+    t.integer  "from_id"
+    t.integer  "to_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -10,10 +10,10 @@ module PostsHelper
     i = 0
     new_str = ""
     while i < str.length and i < 25 do
-      if str[i].ascii_only?
+      if str[i].ascii_only?           # For English
         new_str += str[i]
         i += 1
-      else
+      else                              # For Arabic if japansese we must add by 3
         new_str += str[i..(i+1)]
         i += 2
       end

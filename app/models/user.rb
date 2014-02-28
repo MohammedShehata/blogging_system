@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   # very important here Note That <<< location_attributes >>> Not Location see the source of new.html
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :firstname, :lastname, :info, :image, :remote_image_url, :location_attributes
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :firstname, :lastname, :info, :image, :remote_image_url, :location_attributes, :to_message, :from_message
   
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
@@ -22,4 +22,7 @@ class User < ActiveRecord::Base
   
   belongs_to :location, :dependent => :destroy
   accepts_nested_attributes_for :location, :allow_destroy => :true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+
+  has_many :from_message, :class_name => "Message", :foreign_key => "from_id"
+  has_many :to_message, :class_name => "Message", :foreign_key => "to_id"
 end
