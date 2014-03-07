@@ -39,29 +39,3 @@ $(function() {
 		$("#dialog").dialog("open");
 	});
 });
-
-$(function() {
-	$(".chatting").dialog({
-		autoOpen : false,
-		show : {
-			effect : "blind"
-		},
-		hide : {
-			effect : "highlight",
-			duration: 1000
-		},
-		title : "Chat",
-		maxHeight: 350,
-		modal : false,
-		backgroundColor: "red", 
-		position: { 
-			my: "left top",
-			at: "right bottom", 
-			of: window 
-		},
-		resizable : false
-	});
-	$(".chat").click(function() {
-		$(".chatting").dialog("open");
-	});
-});

@@ -3,9 +3,9 @@
 	<head>
 		<title>BloggingSystem</title>
 		<%= stylesheet_link_tag :all %>
-		<%= stylesheet_link_tag "ui-darkness/jquery-ui-1.10.4.custom.css" %> <!-- Note that use defaults will put the 2 files application.js + jquery_ujs.js(without this file sign_out
+		<%= stylesheet_link_tag "ui-darkness/jquery-ui-1.10.4.custom.css", "chatting.css" %> <!-- Note that use defaults will put the 2 files application.js + jquery_ujs.js(without this file sign_out
 		in devise doesn't work)		 -->
-		<%= javascript_include_tag :defaults, "bootstrap.min.js", "jquery_ujs.js", "jquery.js", "jquery-1.10.2.js", "jquery-ui-1.10.4.custom.min.js", "map.js" %>
+		<%= javascript_include_tag :defaults, "bootstrap.min.js", "jquery_ujs.js", "jquery.js", "jquery-1.10.2.js", "jquery-ui-1.10.4.custom.min.js", "map.js" , "chatting.js"%>
 		<%= csrf_meta_tag %>
 		<style type="text/css" >
 			html {
@@ -60,11 +60,20 @@
 		<%= yield %>
 		
 <!-- 		 For Chatting       -------------->
-<div class="chatting">
-	aloooo	
+<div class="chatting" style="background-color: black; position: absolute; bottom: 0%; left: 2%; color: white; width: 22%; padding: 0.5%; height: 50%; border-radius: 10px">
+	<div style="font-weight: bolder; background:#333333; border-radius: 5px; padding: 0.5%;">
+		Title
+		<div class="chat-close ui-icon ui-icon-closethick" style="padding: 0.5%; border-radius: 5px; background-color: #666666; float: right" title="close"></div>
+	</div>
+	<div class="chat-space" style="overflow-y: scroll; width: 100%; height: 80%; position:relative;">
+		<p><span style="font: bolder; color: red">Me: </span>aloooo</p>
+	</div>
+	<input type="text" style="float: bottom"></input>	
 </div>
 <button class="chat" class="btn btn-mini btn-danger" style="font-weight: bolder">
-	Chat
+	Chat2
 </button>
+
 	</body>
+	
 </html>
