@@ -23,7 +23,7 @@
 		<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5SDBOHYHgFj6_WgE5JoNrKovROLVB3x8&sensor=true&language=ar"></script>
 	</head>
-	<body style="margin: 1%">
+	<body style="margin: 1%" onload="creatChatCanvas();">
 		<ul class="nav nav-pills">
 			<% if user_signed_in? %>
 			<li>
@@ -60,17 +60,16 @@
 		<%= yield %>
 		
 <!-- 		 For Chatting       -------------->
-<div class="chatting" style="background-color: black; position: absolute; bottom: 0%; left: 2%; color: white; width: 22%; padding: 0.5%; height: 50%; border-radius: 10px">
-	<div style="font-weight: bolder; background:#333333; border-radius: 5px; padding: 0.5%;">
+<!-- <div class="chatting">
+	<div class="title">
 		Title
-		<div class="chat-close ui-icon ui-icon-closethick" style="padding: 0.5%; border-radius: 5px; background-color: #666666; float: right" title="close"></div>
+		<div class="chat-close ui-icon ui-icon-closethick" title="close"></div>
 	</div>
-	<div class="chat-space" style="overflow-y: scroll; width: 100%; height: 80%; position:relative;">
+	<div class="chat-space">
 		<p><span style="font: bolder; color: red">Me: </span>aloooo</p>
 	</div>
 	<input type="text" style="float: bottom"></input>	
-</div>
-<button class="chat" class="btn btn-mini btn-danger" style="font-weight: bolder">
+</div> --><button class="chat" class="btn btn-mini btn-danger" style="font-weight: bolder" onclick="creatChatCanvas();">
 	Chat2
 </button>
 
