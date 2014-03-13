@@ -2,7 +2,7 @@
 	background-color: black;
 	position: absolute;
 	bottom: 0%;
-	left: 76%;
+	left: 63%;
 	color: white;
 	width: 22%;
 	padding: 0.5%;
@@ -20,6 +20,7 @@
 	border-radius: 5px;
 	background-color: #666666;
 	float: right;
+	cursor: pointer;
 }
 .chat-space {
 	overflow-y: scroll;
@@ -27,5 +28,29 @@
 	display: inline-block;
 	width: 100%;
 	height: 80%;
+	position: relative;
+}
+.cur-chat {
+	background-color: black;
+	position: absolute;
+	bottom: 0%;
+	left: 86%;
+	width: 14%;
+	color: #FFFFFF;
+	font-weight: bolder;
+	cursor: pointer;
+}
+.cur-chat-closed {
+	height: 5%;
+}
+.cur-chat-open {
+	height: 40%;
+}
+.users-chat {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	display: inline-block;
+	width: 100%;
+	height: 90%;
 	position: relative;
 }

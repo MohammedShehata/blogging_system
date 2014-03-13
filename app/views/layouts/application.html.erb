@@ -23,7 +23,7 @@
 		<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5SDBOHYHgFj6_WgE5JoNrKovROLVB3x8&sensor=true&language=ar"></script>
 	</head>
-	<body style="margin: 1%" onload="creatChatCanvas();">
+	<body style="margin: 1%;">
 		<ul class="nav nav-pills">
 			<% if user_signed_in? %>
 			<li>
@@ -59,20 +59,11 @@
 
 		<%= yield %>
 		
-<!-- 		 For Chatting       -------------->
-<!-- <div class="chatting">
-	<div class="title">
-		Title
-		<div class="chat-close ui-icon ui-icon-closethick" title="close"></div>
+	<div class="cur-chat-closed cur-chat" >
+		<div class="title"><center>Current Chat</center></div>
+		<div class="users-chat"></div>
 	</div>
-	<div class="chat-space">
-		<p><span style="font: bolder; color: red">Me: </span>aloooo</p>
-	</div>
-	<input type="text" style="float: bottom"></input>	
-</div> --><button class="chat" class="btn btn-mini btn-danger" style="font-weight: bolder" onclick="creatChatCanvas();">
-	Chat2
-</button>
-
+	
 	</body>
 	
 </html>

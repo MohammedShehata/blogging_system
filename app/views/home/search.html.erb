@@ -9,10 +9,15 @@
 	<% @users.each do |user|%>
 	<tr>
 		<td> <%= image_tag profile_pic(user), :class => "img-rounded"%> <span><%= link_to user.username, profile_path(user) %></span></td>
+		<td>
+			<button class="btn btn-inverse" style="font-weight: bolder" onclick="creatChatCanvas('<%= user.username %>', '<%= user.id %>');">
+				Chat
+			</button>
+		</td>
 	</tr>
 	<% end %>
 </table>
 <%= will_paginate @users, :style => 'color:blue' %>
 <br/>
 <%= page_entries_info @users %>
-<% end %>
+<% end %> 
