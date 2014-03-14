@@ -35,11 +35,6 @@ $(function() {
 });
 $(function() {
 	$(window).scroll(function(event) {
-		// var b = ($(document.body)[0].scrollHeight - $(document).scrollTop() - $(".chatting").height());
-		// $("title").text($(document).scrollTop() + " t>>" + $(window)[0].scrollHeight + " t>>" + $(window).scrollHeight);
-		// var a = 45 * ($(document.body)[0].scrollHeight - $(document).scrollTop() - $(".chatting").height()) / 100;
-		// a += "%";
-		// if($(document).scrollTop() + $(".chatting").height() < $(window).last().bottom())
 		changeCahtPos();
 	});
 });
@@ -53,24 +48,48 @@ function changeCahtPos() {
 }
 
 function creatChatCanvas(title, userId) {
-	var canv = $("<div id='u-" + userId + "' class='chatting'/>");
-	canv.append(
-		$("<div class='title'>" + title + "</div>").append(
-			$("<div class='chat-close ui-icon ui-icon-closethick' title='close'>")),
-		$("<div class='chat-space'/>"), 
-		$("<input type='text' style='float: bottom'/>")
-	).appendTo("body");
-
-	changeCahtPos();
-
-	canvCounter++;
+	$(".chatting").hide();
+	
+	if($("#u-" + userId).length == 0)
+	{
+		var canv = $("<div id='canv-u-" + userId + "' class='chatting'/>");
+		canv.append(
+			$("<div class='title'>" + title + "</div>").append(
+				$("<div class='chat-close ui-icon ui-icon-closethick' title='close'>")),
+			$("<div class='chat-space'/>"), 
+			$("<input type='text' style='float: bottom'/>")
+		).appendTo("body");
+	
+		changeCahtPos();
+	
+		canvCounter++;
+		
+		// add the user to the chat users canvase
+		addUserChatRec(userId, title);	
+	}
+	else
+		$("#canv-u-"+userId+".chatting").show();	
 }
-
+function addUserChatRec(userId, title)
+{
+	$(".users-chat").append(
+		$("<div class='user-chat-rec' id='u-"+ userId + "' title='open chat canvase'>" + title + "</div>")
+	);
+}
 $(function() {
-	$(document.body).on("click", ".cur-chat-closed", function() {
-		$(".cur-chat-closed").addClass("cur-chat-open").removeClass("cur-chat-closed");
+	$(document.body).on("click", "#cur-chat-id", function() {
+		var canv = $(this).parent();
+		if(canv.hasClass("cur-chat-closed"))
+		{
+			canv.addClass("cur-chat-open").removeClass("cur-chat-closed");
+		}
+		else
+		{
+		 	canv.addClass("cur-chat-closed").removeClass("cur-chat-open");
+		}
 	});
-	$(document.body).on("click", ".cur-chat-open", function() {
-		$(".cur-chat-open").addClass("cur-chat-closed").removeClass("cur-chat-open");
+	$(document.body).on("click", ".user-chat-rec", function() {
+		$(".chatting").hide();
+		$("#canv-" + $(this).attr("id")).show("slide", {direction:"right"}, 500);
 	});
 });

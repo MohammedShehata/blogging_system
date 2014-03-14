@@ -54,3 +54,10 @@
 	height: 90%;
 	position: relative;
 }
+.user-chat-rec {
+	font-weight: bolder;
+	background: #AAAAAA;
+	border-radius: 5px;
+	padding: 0.5%;
+	margin: 2%;	
+}
