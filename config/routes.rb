@@ -26,6 +26,10 @@ BloggingSystem::Application.routes.draw do
   # for the autocomplete
   match "usernames" => "profile#usernames"
   
+  # for the chatting
+  match "get_messages" => "messages#get_messages"
+  match "send_message" => "messages#send_message"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

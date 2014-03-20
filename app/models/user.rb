@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
   belongs_to :location, :dependent => :destroy
   accepts_nested_attributes_for :location, :allow_destroy => :true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
 
-  has_many :from_message, :class_name => "Message", :foreign_key => "from_id"
-  has_many :to_message, :class_name => "Message", :foreign_key => "to_id"
+  has_many :from_messages, :class_name => "Message", :foreign_key => "from_id"
+  has_many :to_messages, :class_name => "Message", :foreign_key => "to_id"
+  
+  def encode_user_name
+    self.username.force_encoding('UTF-8')
+  end
 end
