@@ -13,9 +13,10 @@ class MessagesController < ApplicationController
       format.json {
           render :json =>{:messages => @messages.to_json(
           :include => { 
-            :from => {:only=>[:id, :username]}
+            :from => {:only=>[:id, :username], methods: :encode_user_name}
             },
-        :only =>[:id, :content])
+        :only =>[:id, :content], 
+        methods: :encode_content)
         } 
       }  
     end
